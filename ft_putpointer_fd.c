@@ -6,7 +6,7 @@
 /*   By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:47:54 by rmakende          #+#    #+#             */
-/*   Updated: 2024/06/12 18:17:26 by rmakende         ###   ########.fr       */
+/*   Updated: 2024/06/27 21:43:46 by rmakende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	address_to_hex(char *buffer, void *ptr)
 	}
 }
 
-static int	ft_putpointer_fd(void *ptr, int fd)
+int	ft_putpointer_fd(void *ptr, int fd)
 {
 	char	buffer[2 + sizeof(ptr) * 2 + 1];
 

@@ -6,13 +6,13 @@
 /*   By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:19:36 by rmakende          #+#    #+#             */
-/*   Updated: 2024/06/12 18:32:56 by rmakende         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:04:02 by rmakende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	handle_c(va_list args, char c, int *stopper)
+static int	handle_c(va_list args, char c)
 {
 	if (c == 'c')
 		return (ft_putchar_fd(va_arg(args, int), 1));
@@ -30,7 +30,6 @@ static int	handle_c(va_list args, char c, int *stopper)
 		return (ft_putchar_fd('%', 1));
 	else
 	{
-		*stopper = 1;
 		return (0);
 	}
 }
@@ -40,44 +39,39 @@ int	ft_printf(char const *c, ...)
 	int			i;
 	int			count;
 	va_list		args;
-	static int	stopper;
 
 	i = 0;
 	count = 0;
-	stopper = 0;
 	va_start(args, c);
-	while (c[i] && !stopper)
+	while (c[i])
 	{
 		if (c[i] == '%')
 		{
-			count += handle_c(args, c[i + 1], &stopper);
+			count += handle_c(args, c[i + 1]);
 			i++;
 		}
 		else
-		{
 			count += ft_putchar_fd(c[i], 1);
-		}
 		i++;
 	}
 	va_end(args);
 	return (count);
 }
-
 /*
 int main()
 {
-    int entero = 42564;
-    char caracter = 'A';
-    char *cadena = "Hola, mundo!";
-    char *cadena_larga = "Este es un string extremadamente largo";
+    int entero = 985632;
+    char caracter = 'B';
+    char *cadena = NULL;
+    char *cadena_larga = "Este es un string extremadamente largooooooooo";
     char *cadena_vacia = "";
     unsigned int unsigned_entero = 121212;
     void *puntero = &entero;
     void *puntero_null = NULL;
     int num_negativo = -42;
-    int int_max = INT_MAX;
-    int int_min = INT_MIN;
-    unsigned int uint_max = UINT_MAX;
+    int int_max = 2147483647;
+    int int_min = 2147483647;
+    unsigned int uint_max = 4294967295;
 
     int original_ret, mi_ret;
 
@@ -100,7 +94,7 @@ int main()
     printf("Return: %d\n", original_ret);
 
     printf("Mi ft_printf:\n");
-    mi_ret = ft_printf("Cadena: %s\n", cadena);
+    mi_ret = ft_printf("Cadena: %s \n", cadena);
     printf("Return: %d\n\n", mi_ret);
 
     printf("%s\n", "Prueba de impresión de cadenas largas");
@@ -222,9 +216,9 @@ int main()
 
     // Comparación de printf original y ft_printf con solo un porcentaje
     printf("===== COMPARACIÓN DE PORCENTAJE =====\n");
-    original_ret = printf("x \n");
+    original_ret = printf(" x");
     printf("Original Return: %d\n", original_ret);
-    mi_ret = ft_printf("hola muy buenas % hola \n");
+    mi_ret = ft_printf("h% hola que tal\n");
     printf("Mi printf Return: %d\n\n", mi_ret);
     
     // Comparación de printf original con una cadena
@@ -242,4 +236,5 @@ int main()
     printf("Mi printf Return: %d\n\n", mi_ret);
 
     return 0;
+}
 */

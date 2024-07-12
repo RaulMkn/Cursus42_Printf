@@ -6,7 +6,7 @@
 /*   By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:36:22 by rmakende          #+#    #+#             */
-/*   Updated: 2024/06/12 13:41:49 by rmakende         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:19:30 by rmakende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_putstr_fd(char *s, int fd)
 
 	i = 0;
 	j = 0;
+	if (!s)
+		return (ft_putstr_fd("(null)", 1));
 	while (s[i] != '\0')
 	{
 		result = ft_putchar_fd(s[i], fd);

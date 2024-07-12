@@ -6,7 +6,7 @@
 #    By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 19:11:54 by rmakende          #+#    #+#              #
-#    Updated: 2024/06/12 12:41:22 by rmakende         ###   ########.fr        #
+#    Updated: 2024/06/27 23:15:19 by rmakende         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,12 @@ COMPILE = ${CC} ${CFLAGS}
 RM = rm -f
 # A list of all .c files in the current directory
 SRCS = ft_printf.c\
-       ft_putexa_fd.c\
 	   ft_putchar_fd.c\
 	   ft_putstr_fd.c\
 	   ft_putpointer_fd.c\
 	   ft_putnbr_fd.c\
 	   ft_putexa_fd.c\
-	   ft_putunsigned_fd.c\
+	   ft_putunsigned_fd.c
 	   
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)
@@ -45,10 +44,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
-
 %.o:%.c	
 	$(COMPILE) -c $< -o $@
-
 	
 # A rule to remove all .o files
 clean:
